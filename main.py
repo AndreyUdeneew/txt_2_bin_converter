@@ -9,27 +9,35 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter.filedialog import *
 import os
+import numpy as np
 from os import path
 
 
 def converter():
     input_filename = filedialog.askopenfilename(parent=window)
     fileDir = os.path.split(input_filename)[0]
+    print("wtf")
     print(fileDir)
+    print("wtf")
     # filename = "C:/Users/Stasy/Desktop/test.txt"
     # input_filename=fileDir+'/output2FLASH_bin.txt'
     output_filename = fileDir + '/output2FLASH_bin.txt'
     # read file as string:
     f = open(input_filename, 'r')
     mytxt = f.read()
-    print(mytxt)
+    print("wtf")
+    print("\r\n")
 
     # change text into binary mode:
-    binarytxt = str.encode(mytxt)
-    print(binarytxt)
+    binarytxt = int(mytxt,16)
+    hex_txt = hex(binarytxt)
+    # print(hex_txt)
+    # print()
+    # print(mytxt)
+    # binarytxt = str.encode(txt)
     # save the bytes object
     with open(output_filename, 'wb') as fbinary:
-        fbinary.write(binarytxt)
+        fbinary.write(hex_txt)
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -40,7 +48,7 @@ def print_hi(name):
 if __name__ == '__main__':
     window = Tk()
     window.geometry('300x100')
-    window.title("flashFiller")
+    window.title("txt_2_bin_converter")
 
     # lbl0 = Label(window, text="Выбор полноэкранных картинок")
     # lbl0.grid(column=0, row=1)
